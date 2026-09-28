@@ -1,0 +1,75 @@
+Algoritmo CentroAcopio
+Definir opcion, tipoFruta Como Entero
+Definir peso, precioKilo, subtotal, bono, retencion, totalPagar Como Real
+Definir totalKilos, totalDinero, pesoMayor Como Real
+totalKilos <- 0
+totalDinero <- 0
+pesoMayor <- 0
+opcion <- 0
+Mientras opcion <> 3 Hacer
+Escribir ""
+Escribir "--- MENU PRINCIPAL ---"
+Escribir "1. Registrar lote de fruta"
+Escribir "2. Ver resumen del centro"
+Escribir "3. Salir"
+Escribir "Elige una opcion:"
+Leer opcion
+Si opcion = 1 Entonces
+Escribir "Ingrese el tipo de fruta (1: Tipo A / Exportacion, 2: Tipo B / Nacional):"
+Leer tipoFruta
+Si tipoFruta = 1 O tipoFruta = 2 Entonces
+Escribir "Ingrese el peso del lote en Kilos:"
+Leer peso
+Mientras peso <= 0 Hacer
+Escribir "El peso debe ser mayor a 0. Intente de nuevo:"
+Leer peso
+FinMientras
+Si tipoFruta = 1 Entonces
+precioKilo <- 3500
+Sino
+precioKilo <- 2200
+FinSi
+total <- peso * precioKilo
+bono <- 0
+retencion <- 0
+Si tipoFruta = 1 Y peso > 500 Entonces
+bono <- subtotal * 0.05
+FinSi
+Si tipoFruta = 2 Y peso < 100 Entonces
+retencion <- subtotal * 0.03
+FinSi
+totalPagar <- subtotal + bono - retencion
+totalKilos <- totalKilos + peso
+totalDinero <- totalDinero + totalPagar
+Si peso > pesoMayor Entonces
+pesoMayor <- peso
+FinSi
+Escribir "--- RESUMEN DE COMPRA ---"
+Escribir "Subtotal: $", subtotal
+Si bono > 0 Entonces
+Escribir "Bono de exportacion (5%): $", bono
+FinSi
+Si retencion > 0 Entonces
+Escribir "Retencion carga pequeña (3%): $", retencion
+FinSi
+Escribir "Total a pagar al agricultor: $", totalPagar
+Sino
+Escribir "Tipo de fruta no valido."
+FinSi
+Sino
+Si opcion = 2 Entonces
+Escribir ""
+Escribir "--- REPORTES GENERALES ---"
+Escribir "Total de kilos recibidos: ", totalKilos, " Kg"
+Escribir "Total de dinero pagado: $", totalDinero
+Escribir "El lote mas pesado fue de: ", pesoMayor, " Kg"
+Sino
+Si opcion = 3 Entonces
+Escribir "Saliendo del programa..."
+Sino
+Escribir "Opcion incorrecta."
+FinSi
+FinSi
+FinSi
+FinMientras
+FinAlgoritmo
