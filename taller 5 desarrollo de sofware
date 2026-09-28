@@ -1,0 +1,90 @@
+Algoritmo CineMultiplex
+Definir capacidadTotal, opcion, tipoCliente, boletos Como Entero
+Definir sillasDisponibles, sillasOcupadas Como Entero
+Definir cantGeneral, cantEstudiantes, promosAplicadas Como Entero
+Definir precio, subtotal, descuento, totalPagar, totalRecaudado Como Real
+cantGeneral <- 0
+cantEstudiantes <- 0
+promosAplicadas <- 0
+totalRecaudado <- 0
+sillasOcupadas <- 0
+opcion <- 0
+Escribir "Ingrese la capacidad inicial de la sala (entre 1 y 80):"
+Leer capacidadTotal
+Mientras capacidadTotal < 1 O capacidadTotal > 80 Hacer
+Escribir "Capacidad no valida. Debe ser entre 1 y 80 asientos:"
+Leer capacidadTotal
+FinMientras
+sillasDisponibles <- capacidadTotal
+Mientras opcion <> 3 Hacer
+Escribir "--- TAQUILLA DEL CINE ---"
+Escribir "1. Comprar entradas"
+Escribir "2. Ver estado de la sala"
+Escribir "3. Cierre de caja"
+Escribir "Seleccione una opcion:"
+Leer opcion
+Si opcion = 1 Entonces
+Escribir "Tipo de boleto (1: General [$12.000], 2: Estudiante [$8.000]):"
+Leer tipoCliente
+Si tipoCliente = 1 O tipoCliente = 2 Entonces
+Escribir "Ingrese la cantidad de boletos:"
+Leer boletos
+Mientras boletos <= 0 Hacer
+Escribir "La cantidad debe ser mayor a 0. Intente de nuevo:"
+Leer boletos
+FinMientras
+Si boletos > sillasDisponibles Entonces
+Escribir "No hay suficiente aforo. Solo quedan ", sillasDisponibles, " sillas."
+Sino
+Si tipoCliente = 1 Entonces
+precio <- 12000
+cantGeneral =cantGeneral + boletos
+Sino
+precio =8000
+cantEstudiantes =cantEstudiantes + boletos
+FinSi
+subtotal =boletos * precio
+Si boletos >= 4 Entonces
+descuento =subtotal * 0.10
+promosAplicadas =promosAplicadas + 1
+Sino
+descuento =0
+FinSi
+totalPagar =subtotal - descuento
+sillasDisponibles =sillasDisponibles - boletos
+sillasOcupadas =sillasOcupadas + boletos
+totalRecaudado = talRecaudado + totalPagar
+Escribir "--- COMPROBANTE ---"
+Escribir "Subtotal: $", subtotal
+Si descuento > 0 Entonces
+Escribir "Descuento promocional (10%): $", descuento
+FinSi
+Escribir "Total cobrado: $", totalPagar
+FinSi
+Sino
+Escribir "Tipo de cliente invalido."
+FinSi
+Sino
+Si opcion = 2 Entonces
+Escribir "--- ESTADO DE LA SALA ---"
+Escribir "Sillas ocupadas: ", sillasOcupadas
+Escribir "Sillas disponibles: ", sillasDisponibles
+Sino
+Si opcion = 3 Entonces
+Escribir "--- REPORTES DE CIERRE ---"
+Escribir "Recaudo total: $", totalRecaudado
+Escribir "Boletos General vendidos: ", cantGeneral
+Escribir "Boletos Estudiante vendidos: ", cantEstudiantes
+Escribir "Ventas con descuento de promo: ", promosAplicadas
+Escribir "Cerrando el sistema..."
+Sino
+Escribir "Opcion invalida."
+FinSi
+FinSi
+FinSi
+FinMientras	
+FinAlgoritmo
+
+
+
+	
